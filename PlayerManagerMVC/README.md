@@ -1,21 +1,29 @@
 ```mermaid
 classDiagram
+
     class CompareByName 
     class Controller
+
+    class IView
     <<interface>> IView 
+
     class Player 
-    class PlayerOrder 
+    class PlayerOrder
+    <<enum>> PlayerOrder 
+    
     class Program 
     class View
     
 
-    Cat ..|> IMammal
-    Dog ..|> IMammal
-    Bat ..|> IMammal
-    Bat ..|> ICanFly
-    Bee ..|> ICanFly
-    Cat --|> Animal 
-    Bee --|> Animal
-    Bat --|> Animal
-    Dog --|> Animal
-    Program --> Animal
+    View ..|> IView
+    CompareByName <.. Player
+    View --> Program
+    Controller --> Program
+    PlayerOrder ..> Player
+    Player --> Program
+
+
+
+
+
+    
