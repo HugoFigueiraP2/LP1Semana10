@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PlayerManager4
+namespace PlayerManagerMVC
 {
     public interface IView
     {
@@ -15,19 +15,13 @@ namespace PlayerManager4
 
         void AfterMenu();
 
-
         Player InsertPlayer();
 
-        void ListPlayers();
-
-        void ListPlayersWithScoreGreaterThan();
-
+        void ListPlayers(List<Player> players);
 
         int AskForMinimumScore();
 
-
-        PlayerOrder AskForPlayerOrder();
-
-
+        void ListPlayersWithScoreGreaterThan(List<Player> players, int score);
+        
     }
 }
