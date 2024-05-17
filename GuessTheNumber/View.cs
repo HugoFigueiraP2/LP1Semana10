@@ -10,9 +10,10 @@ namespace GuessTheNumber
             Console.WriteLine("I have chosen a number between 1 and 100.");
         }
 
-        public string TakeGuess()
+        public int TakeGuess()
         {
             Console.Write("Take a guess: ");
+            return Convert.ToInt32(Console.ReadLine());
 
         }
 
@@ -31,9 +32,9 @@ namespace GuessTheNumber
 
         public string ToHigh()
         {
-            {
-                Console.WriteLine("Too high! Try again.");
-            }
+            
+            Console.WriteLine("Too high! Try again.");
+            
         }
 
         public string EndMessage()

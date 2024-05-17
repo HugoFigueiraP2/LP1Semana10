@@ -5,38 +5,50 @@ namespace GuessTheNumber
     public class Controller
     {
         private Model GameData;
+        private IView _view;
 
         public Controller (Model model_1)
         {
+            GameData = model_1;
 
         }
 
-        public int GameLoop()
+        public void GameLoop(IView view)
         {
-             while (!guessedCorrectly)
-            {
-                //Console.Write("Take a guess: ");
-                guess = Convert.ToInt32(Console.ReadLine());
-                attempts++;
+            _view = view;
+            int guess = -1;
 
-                if (guess == targetNumber)
+
+            _view.WelcomeMessage();
+            GameData.Generator();
+
+            while (!guessedCorrectly)
+            {
+                
+                
+                guess = GameData.TakeGuess();
+                int attempt = GameData.IncrementAttempt();
+                if (GameData.StateWin(guess))
                 {
-                    //Console.WriteLine(
-                    //    "Congratulations! You guessed the number correctly!");
-                    //Console.WriteLine("Number of attempts: " + attempts);
-                    guessedCorrectly = true;
+                    _view.Correct();
+                    break;
+
                 }
-                else if (guess < targetNumber)
+                if (GameData.HitGuess(guess) == true)
                 {
-                    //Console.WriteLine("Too low! Try again.");
+                    _view.ToHigh();
                 }
                 else
                 {
-                    //Console.WriteLine("Too high! Try again.");
+                    _view.TooLow();
                 }
-            }
-        }
+                
+
     
+            }
+            _view.EndMessage();
+        }
+
     }
 
 }
